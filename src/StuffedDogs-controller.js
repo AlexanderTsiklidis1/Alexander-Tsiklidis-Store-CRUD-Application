@@ -9,10 +9,6 @@ function create (stuffedDogs) {
         name: getStuffedDogName(),
         priceInCents: getStuffedDogPrice(),
         inStock: getStuffedDogInStock(),
-        
-        
-
-        
     };
     
     stuffedDogs.push(stuffedDog);
