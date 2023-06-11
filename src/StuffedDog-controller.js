@@ -1,12 +1,11 @@
 const { writeJSONFile } = require("./helpers");
-const {getStuffedDogName, getStuffedDogPrice, getStuffedDogInStock} = require("./faker-helpers");
-const { nanoid } = require("nanoid");
+const {getStuffedDogId, getStuffedDogName, getStuffedDogPrice, getStuffedDogInStock} = require("./faker-functions");
 
 
 
 function create (stuffedDogs, stuffedDogSize) {
-    const stuffedDog = { id: nanoid(4), 
-        id: nanoid(4),
+    const stuffedDog = { 
+        id: getStuffedDogId(),
         name: getStuffedDogName(),
         priceInCents: getStuffedDogPrice(),
         inStock: getStuffedDogInStock(),
@@ -64,7 +63,7 @@ function update (stuffedDogs, stuffedDogId, updatedStuffedDogPrice, stuffedDogIn
       
        return stuffedDogs
    } else {
-     console.log("couldnt find a purchase with that id")
+     console.log("couldnt find a stuffedDog with that id")
     }
    
 }

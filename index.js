@@ -8,42 +8,42 @@ const {
     addToCart,
     cartTotal,
     cancelCart
-} = require("./src/clothes-controller")
+} = require("./src/StuffedDog-controller")
 
 
 const run = () => {
     const action = process.argv[2];
-    const clothing = process.argv[3];
+    const stuffedDog = process.argv[3];
     let stuffedDogs = readJSONFile("./data", "stuffedDogs-data.json");
     let cart = readJSONFile("./data", "cart-data.json");
     let writeToFile = false;
-    let updatedClothes = [];
+    let updatedStuffedDogs = [];
     let updatedCart = [];
 
     switch (action) {
         case "index" :
-            const allClothes = index(clothes);
-            console.log(allClothes);
+            const allStuffedDogs = index(stuffedDogs);
+            console.log(allStuffedDogs);
             break;   
         case "create" :
-            updatedClothes = create(clothes, clothing);
+            updatedStuffedDogs = create(stuffedDogs, stuffedDog);
             writeToFile = true;
             break;
         case "show" :
-            const foundClothing = show(clothes, clothing);
-            console.log(foundClothing);
+            const foundStuffedDog = show(stuffedDogs, stuffedDog);
+            console.log(foundStuffedDog);
             break;  
         case "update" :
-            console.log(clothing,  "is being updated");
-            updatedClothes = update(clothes, clothing, process.argv[4], process.argv[5], process.argv[6]);
+            console.log(stuffedDog,  "is being updated");
+            updatedClothes = update(stuffedDogs, stuffedDog, process.argv[4], process.argv[5], process.argv[6]);
             writeToFile = true;
             break; 
         case "destroy" :
-            updatedClothes = destroy(clothes, clothing);
+            updatedClothes = destroy(stuffedDogs, stuffedDog);
             writeToFile = true;
             break ;  
         case "addToCart" :
-            updatedCart = addToCart(cart, clothes, clothing)
+            updatedCart = addToCart(cart, stuffedDogs, stuffedDog)
             writeJSONFile("./data", "cart-data.json", updatedCart);
             break;
         case "cartTotal" :
@@ -58,7 +58,7 @@ const run = () => {
 
     if (writeToFile) {
         console.log("updating data");
-        writeJSONFile("./data", "clothes-data.json", updatedClothes);
+        writeJSONFile("./data", "stuffedDogs-data.json", updatedStuffedDogs);
     }
 
 }
