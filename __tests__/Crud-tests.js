@@ -51,6 +51,7 @@ id 40c26216-1509-44ae-a6e0-c8fb13760e4c name Ariegeois priceInCents 7259 inStock
          const actual = destroy(stuffedDogsData, "aaf16c13-9e42-4c15-b6e0-c382d6a116f7");
          const expected = 3;
          expect(actual.length).toBe(expected);
+         
      });
  });
  
