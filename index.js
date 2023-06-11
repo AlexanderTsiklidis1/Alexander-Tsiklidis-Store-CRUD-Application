@@ -5,61 +5,62 @@ const {
     show,
     destroy,
     update,
-    score
-} = require("./src/purchases-controller")
+    addToCart,
+    cartTotal,
+    cancelCart
+} = require("./src/clothes-controller")
+
 
 const run = () => {
-    
-        const action = process.argv[2];
-       
-        const purchase = process.argv[3];
-      
-        let purchases = readJSONFile("./data", "purchases-data.json")
-        
-        let writeToFile = false;
-        let updatedPurchases = [];
-       
-        switch (action) {
-            
-            case "index" :
-                const allPurchases = index(purchases)
-                console.log(allPurchases);
-                break;   
-            
-            case "create" :
-                console.log("CREATE IS FIRING")
-                updatedPurchases = create(purchases, purchase) 
-                writeToFile = true;
-                break;
-            case "show" :
-                const foundPurchase = show(purchases, purchase)
-                console.log(foundPurchase)
-                break ;  
-            case "update" :
-                console.log(purchase,  " %%%%%%% ")
-                updatedPurchases = update(purchases, purchase, process.argv[4]);
-                writeToFile = true;
-                break; 
-            
-            case "destroy" :
-                updatedPurchases = destroy(purchases, purchase);
-                writeToFile = true;
-                break ;  
-            
-            case "score" :
-                console.log(score(purchases))
-                break; 
-            default :
-            console.log("hey there was an error")  
-        }
-       
-        if (writeToFile) {
-            console.log("new data detected - updating")
-            
-            writeJSONFile("./data", "purchases-data.json", updatedPurchases)
-        }
-    
+    const action = process.argv[2];
+    const clothing = process.argv[3];
+    let stuffedDogs = readJSONFile("./data", "stuffedDogs-data.json");
+    let cart = readJSONFile("./data", "cart-data.json");
+    let writeToFile = false;
+    let updatedClothes = [];
+    let updatedCart = [];
+
+    switch (action) {
+        case "index" :
+            const allClothes = index(clothes);
+            console.log(allClothes);
+            break;   
+        case "create" :
+            updatedClothes = create(clothes, clothing);
+            writeToFile = true;
+            break;
+        case "show" :
+            const foundClothing = show(clothes, clothing);
+            console.log(foundClothing);
+            break;  
+        case "update" :
+            console.log(clothing,  "is being updated");
+            updatedClothes = update(clothes, clothing, process.argv[4], process.argv[5], process.argv[6]);
+            writeToFile = true;
+            break; 
+        case "destroy" :
+            updatedClothes = destroy(clothes, clothing);
+            writeToFile = true;
+            break ;  
+        case "addToCart" :
+            updatedCart = addToCart(cart, clothes, clothing)
+            writeJSONFile("./data", "cart-data.json", updatedCart);
+            break;
+        case "cartTotal" :
+            console.log(cartTotal(cart));
+            break;
+        case "cancelCart" :
+            cancelCart();
+            break;
+        default :
+        console.log("there was an error");
     }
-    
-    
-    run()
+
+    if (writeToFile) {
+        console.log("updating data");
+        writeJSONFile("./data", "clothes-data.json", updatedClothes);
+    }
+
+}
+
+run();
