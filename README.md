@@ -20,6 +20,12 @@ A user of this application will be able to
 
 7- Cancel out all of the data in a cart
 
+## Stretch Goal Implementation
+
+Installed jest and created a tests folder to test functionality of StuffedDogs-controller javascript file
+
+Installed chalk in the hopes of make the user interaction clearer and more exciting
+
 ## Parting Remarks
 
 It was a great plasure developing this version of our app for the Stuffed Dog Store.
