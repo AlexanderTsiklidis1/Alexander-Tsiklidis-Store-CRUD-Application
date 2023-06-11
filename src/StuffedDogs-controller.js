@@ -3,13 +3,14 @@ const {getStuffedDogId, getStuffedDogName, getStuffedDogPrice, getStuffedDogInSt
 
 
 
-function create (stuffedDogs, stuffedDogSize) {
+function create (stuffedDogs) {
     const stuffedDog = { 
         id: getStuffedDogId(),
         name: getStuffedDogName(),
         priceInCents: getStuffedDogPrice(),
         inStock: getStuffedDogInStock(),
-        size: stuffedDogSize
+        
+        
 
         
     };
@@ -20,14 +21,16 @@ function create (stuffedDogs, stuffedDogSize) {
 }
 
 function index (stuffedDogs) {
-    return  stuffedDogs.map((stuffedDog) => "id " + stuffedDog.id + " name " + stuffedDog.name + " priceInCents " + stuffedDog.priceInCents + " inStock " + stuffedDog.inStock + " size " + stuffedDog.size).join("\n");
+    return  stuffedDogs.map((stuffedDog) => "id " + stuffedDog.id + " name " + stuffedDog.name + " priceInCents " + stuffedDog.priceInCents + " inStock " + stuffedDog.inStock).join("\n");
 }
 
 function show (stuffedDogs, stuffedDogId) {
     
-    const foundStuffedDog = stuffedDogs.find((stuffedDog) => stuffedDog.id === stuffedDogId) ;
+    const foundStuffedDog = stuffedDogs.find((stuffedDog) => stuffedDog.id === stuffedDogId)
     
-    return foundStuffedDog.id + " " + foundStuffedDog.name + " " + foundStuffedDog.priceInCents + " price "  + foundStuffedDog.size + " size"
+    const {id, name, priceInCents, inStock} = foundStuffedDog;
+    
+    return "id " + id + " name " + name + " priceInCents " + priceInCents  + " inStock " + inStock
 }
 
 function destroy (stuffedDogs, stuffedDogId) {
@@ -45,7 +48,7 @@ function destroy (stuffedDogs, stuffedDogId) {
    }
 }
 
-function update (stuffedDogs, stuffedDogId, updatedStuffedDogPrice, stuffedDogInStock, stuffedDogSize) {
+function update (stuffedDogs, stuffedDogId, updatedStuffedDogPrice, stuffedDogInStock) {
   
     const index =  stuffedDogs.findIndex((stuffedDog) => stuffedDog.id === stuffedDogId);
     
@@ -57,7 +60,6 @@ function update (stuffedDogs, stuffedDogId, updatedStuffedDogPrice, stuffedDogIn
        
        stuffedDogs[index].inStock = stuffedDogInStock;
 
-       stuffedDogs[index].size = stuffedDogSize;
        
        console.log("your stuffed dog has been updated");
       
