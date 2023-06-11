@@ -8,7 +8,7 @@ const {
     addToCart,
     cartTotal,
     cancelCart
-} = require("./src/StuffedDog-controller")
+} = require("./src/StuffedDogs-controller")
 
 
 const run = () => {
